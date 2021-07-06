@@ -1,5 +1,8 @@
+//external
 import 'package:flutter/material.dart';
-import 'package:glass_kit/glass_kit.dart';
+//internal
+import './transaction.dart';
+import 'package:intl/intl.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,16 +13,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
+        primaryColor: Colors.teal[200],
       ),
+      title: 'Neumorphic App',
       home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
+  final List<Transaction> transactions = [
+    Transaction('t1', 'New Bag', 300.0, DateTime.now()),
+    Transaction('t2', 'New Mouse', 650.0, DateTime.now())
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,37 +34,68 @@ class MyHomePage extends StatelessWidget {
           title: Text('My Expenses'),
         ),
         body: Container(
-          constraints: BoxConstraints.expand(),
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage("images/bg.jpg"), fit: BoxFit.cover)),
           child: Column(
             children: <Widget>[
-              GlassContainer.clearGlass(
-                  height: 200,
-                  width: 350,
-                  borderRadius: BorderRadius.circular(15.0),
-                  borderGradient: LinearGradient(
-                    colors: [
-                      Colors.white.withOpacity(0.30),
-                      Colors.white.withOpacity(0.0),
-                      Colors.white.withOpacity(0.0),
-                      Colors.white.withOpacity(0.20),
-                    ],
-                  ),
-                  gradient: LinearGradient(
-                    colors: [
-                      Colors.white.withOpacity(0.25),
-                      Colors.white.withOpacity(0.05),
-                    ],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                  child: Text('Chart')),
-              GlassContainer.frostedGlass(
-                height: 100,
-                width: 350,
-                borderRadius: BorderRadius.circular(15.0),
+              Card(
+                  child:
+                      Container(width: double.infinity, child: Text('chart'))),
+              Column(
+                children: transactions.map((t) {
+                  return Card(
+                      shape: RoundedRectangleBorder(
+                        side: BorderSide(color: Colors.white10, width: 0),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      elevation: 6,
+                      margin: new EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 10),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Container(
+                                  decoration: new BoxDecoration(
+                                      color: Colors.teal[50],
+                                      borderRadius: BorderRadius.circular(40)),
+                                  padding: EdgeInsets.fromLTRB(15, 15, 15, 15),
+                                  margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                  child: Image(
+                                    image: Image.asset('images/shop.png').image,
+                                    width: 30,
+                                    height: 30,
+                                  ),
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text(
+                                      t.title,
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      DateFormat.yMMMMd("en_US").format(t.date),
+                                      style: TextStyle(color: Colors.grey),
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Container(
+                                margin: EdgeInsets.symmetric(
+                                    vertical: 15, horizontal: 18),
+                                child: Text(
+                                  t.amount.toString(),
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20,
+                                      color: Colors.teal),
+                                )),
+                          ]));
+                }).toList(),
               )
             ],
           ),
