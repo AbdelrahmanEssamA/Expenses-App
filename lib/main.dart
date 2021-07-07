@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:my_expenses/widgets/new_transaction.dart';
 //internal
-import './user_transaction.dart';
+import 'widgets/user_transaction.dart';
 
 void main() {
   runApp(MyApp());
@@ -30,7 +30,7 @@ class MyHomePage extends StatelessWidget {
         appBar: AppBar(
           title: Text('My Expenses'),
         ),
-        body: Container(
+        body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
               Card(
