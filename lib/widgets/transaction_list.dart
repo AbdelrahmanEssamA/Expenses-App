@@ -16,14 +16,14 @@ class TransactionList extends StatelessWidget {
               children: <Widget>[
                 Container(
                   margin: EdgeInsets.symmetric(vertical: 15),
-                  height: 300,
+                  height: 250,
                   child: Image(
                     image: Image.asset('images/empty.png').image,
                     fit: BoxFit.cover,
                   ),
                 ),
                 Text(
-                  'No transfers added yet!',
+                  'No Transfers added yet!',
                   style: Theme.of(context).textTheme.title,
                 ),
               ],

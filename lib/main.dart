@@ -1,11 +1,13 @@
 //external
-
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:my_expenses/widgets/chart.dart';
 import 'package:my_expenses/widgets/new_transaction.dart';
 import 'package:my_expenses/widgets/transaction_list.dart';
 //internal
 import './widgets/new_transaction.dart';
+import './widgets/chart.dart';
+
 import './widgets/transaction_list.dart';
 import './models/transaction.dart';
 
@@ -41,6 +43,11 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _transactions = [];
+  List<Transaction> get _recentTransactions {
+    return _transactions.where((tx) {
+      return tx.date.isAfter(DateTime.now().subtract(Duration(days: 7)));
+    }).toList();
+  }
 
   void _addNewtransaction(String title, double amount) {
     print('in');
@@ -77,9 +84,8 @@ class _MyHomePageState extends State<MyHomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Card(
-                child: Container(width: double.infinity, child: Text('chart'))),
-            TransactionList(_transactions),
+            Chart(_recentTransactions),
+            TransactionList(_transactions)
           ],
         ),
       ),
