@@ -91,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.teal[300],
         foregroundColor: Colors.white,
         onPressed: () => _startAddNewTransaction(context),
         child: Icon(Icons.add),

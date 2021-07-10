@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import './chart_bar.dart';
 import '../models/transaction.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 class Chart extends StatelessWidget {
   final List<Transaction> recentTransactions;
@@ -35,11 +36,18 @@ class Chart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print(groupedTransactions);
-    return Card(
-      elevation: 6,
-      margin: EdgeInsets.all(15),
-      child: Container(
-        padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+    return Neumorphic(
+      margin: EdgeInsets.fromLTRB(12, 25, 12, 12),
+      style: NeumorphicStyle(
+        shape: NeumorphicShape.concave,
+        boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(12)),
+        depth: 8,
+        lightSource: LightSource.topLeft,
+        intensity: .7,
+        color: Colors.white54,
+      ),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 15),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: groupedTransactions.map((data) {

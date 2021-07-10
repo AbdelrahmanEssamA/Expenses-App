@@ -3,6 +3,7 @@ import '../models/transaction.dart';
 //external
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
@@ -30,14 +31,15 @@ class TransactionList extends StatelessWidget {
             )
           : ListView.builder(
               itemBuilder: (ctx, index) {
-                return Card(
-                    shape: RoundedRectangleBorder(
-                      side: BorderSide(color: Colors.white10, width: 0),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    elevation: 3,
-                    margin:
-                        new EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                return Neumorphic(
+                    margin: EdgeInsets.symmetric(horizontal: 10, vertical: 13),
+                    style: NeumorphicStyle(
+                        boxShape: NeumorphicBoxShape.roundRect(
+                            BorderRadius.circular(12)),
+                        depth: 5,
+                        lightSource: LightSource.topLeft,
+                        intensity: .8,
+                        color: Colors.grey[100]),
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
