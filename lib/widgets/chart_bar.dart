@@ -21,10 +21,10 @@ class ChartBar extends StatelessWidget {
           style: NeumorphicStyle(
               shape: NeumorphicShape.concave,
               boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(12)),
-              depth: -10,
+              depth: -15,
               intensity: .75,
               lightSource: LightSource.topLeft,
-              color: Colors.white70),
+              color: Colors.white30),
           child: Container(
             height: 95,
             width: 12,
