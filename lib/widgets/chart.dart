@@ -38,16 +38,22 @@ class Chart extends StatelessWidget {
     return Card(
       elevation: 6,
       margin: EdgeInsets.all(15),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: groupedTransactions.map((data) {
-          return ChartBar(
-              data['day'].toString(),
-              (data['amount'] as double),
-              maxSpending == 0.0
-                  ? 0.5
-                  : (data['amount'] as double) / maxSpending);
-        }).toList(),
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: groupedTransactions.map((data) {
+            return Flexible(
+              fit: FlexFit.tight,
+              child: ChartBar(
+                  data['day'].toString(),
+                  (data['amount'] as double),
+                  maxSpending == 0.0
+                      ? 0.0
+                      : (data['amount'] as double) / maxSpending),
+            );
+          }).toList(),
+        ),
       ),
     );
   }

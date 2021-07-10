@@ -70,16 +70,18 @@ class TransactionList extends StatelessWidget {
                               ),
                             ],
                           ),
-                          Container(
-                              margin: EdgeInsets.symmetric(
-                                  vertical: 15, horizontal: 18),
-                              child: Text(
-                                transactions[index].amount.toStringAsFixed(2),
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20,
-                                    color: Colors.teal),
-                              )),
+                          FittedBox(
+                            child: Container(
+                                margin: EdgeInsets.symmetric(
+                                    vertical: 15, horizontal: 18),
+                                child: Text(
+                                  transactions[index].amount.toStringAsFixed(2),
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20,
+                                      color: Colors.teal),
+                                )),
+                          ),
                         ]));
               },
               itemCount: transactions.length,
