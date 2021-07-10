@@ -34,12 +34,12 @@ class TransactionList extends StatelessWidget {
                 return Neumorphic(
                     margin: EdgeInsets.symmetric(horizontal: 10, vertical: 13),
                     style: NeumorphicStyle(
-                        boxShape: NeumorphicBoxShape.roundRect(
-                            BorderRadius.circular(12)),
-                        depth: 5,
-                        lightSource: LightSource.topLeft,
-                        intensity: .8,
-                        color: Colors.grey[100]),
+                      boxShape: NeumorphicBoxShape.roundRect(
+                          BorderRadius.circular(12)),
+                      depth: 8,
+                      lightSource: LightSource.topRight,
+                      intensity: .8,
+                    ),
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

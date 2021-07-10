@@ -32,12 +32,32 @@ class _NewTransactionState extends State<NewTransaction> {
         child: Column(
           children: <Widget>[
             TextField(
-              decoration: InputDecoration(labelText: 'Title'),
+              decoration: InputDecoration(
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.teal),
+                ),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.teal),
+                ),
+                labelText: 'Title',
+                labelStyle: new TextStyle(color: Colors.teal),
+              ),
               controller: titleController,
               onSubmitted: (_) => submitData,
+              cursorColor: Colors.teal,
             ),
             TextField(
-              decoration: InputDecoration(labelText: 'Amount'),
+              decoration: InputDecoration(
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.teal),
+                ),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.teal),
+                ),
+                labelText: 'Amount',
+                labelStyle: new TextStyle(color: Colors.teal),
+              ),
+              cursorColor: Colors.teal,
               controller: ammountController,
               keyboardType: TextInputType.numberWithOptions(decimal: true),
               onSubmitted: (_) => submitData,

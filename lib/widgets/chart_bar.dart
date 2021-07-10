@@ -11,9 +11,11 @@ class ChartBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        FittedBox(child: Text(spendingAmount.toStringAsFixed(0))),
+        Container(
+            height: 20,
+            child: FittedBox(child: Text(spendingAmount.toStringAsFixed(0)))),
         SizedBox(
-          height: 4,
+          height: 6,
         ),
         Neumorphic(
           style: NeumorphicStyle(
@@ -24,7 +26,7 @@ class ChartBar extends StatelessWidget {
               lightSource: LightSource.topLeft,
               color: Colors.white70),
           child: Container(
-            height: 100,
+            height: 95,
             width: 12,
             child: Stack(
               children: <Widget>[
@@ -41,7 +43,7 @@ class ChartBar extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 4,
+          height: 8,
         ),
         Text(label)
       ],
