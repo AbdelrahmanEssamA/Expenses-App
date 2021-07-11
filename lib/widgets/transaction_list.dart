@@ -7,11 +7,12 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
-  TransactionList(this.transactions);
+  final Function deleteTx;
+  TransactionList(this.transactions, this.deleteTx);
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 380,
+      height: 400,
       child: transactions.isEmpty
           ? Column(
               children: <Widget>[
@@ -44,7 +45,6 @@ class TransactionList extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Container(
                                 decoration: new BoxDecoration(
@@ -72,18 +72,28 @@ class TransactionList extends StatelessWidget {
                               ),
                             ],
                           ),
-                          FittedBox(
-                            child: Container(
-                                margin: EdgeInsets.symmetric(
-                                    vertical: 15, horizontal: 18),
-                                child: Text(
-                                  transactions[index].amount.toStringAsFixed(2),
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20,
-                                      color: Colors.teal),
-                                )),
-                          ),
+                          Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Container(
+                                    margin: EdgeInsets.symmetric(
+                                        vertical: 15, horizontal: 2),
+                                    child: Text(
+                                      transactions[index]
+                                          .amount
+                                          .toStringAsFixed(2),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20,
+                                          color: Colors.teal),
+                                    )),
+                                IconButton(
+                                  onPressed: () =>
+                                      deleteTx(transactions[index].id),
+                                  icon: Icon(Icons.delete),
+                                  color: Theme.of(context).errorColor,
+                                )
+                              ]),
                         ]));
               },
               itemCount: transactions.length,
